@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English Level Test A1–C2</title>
+<style>
+:root{--bg:#f3f4f6;--card:#fff;--ink:#0f172a;--mute:#64748b;--line:#e2e8f0;--bar:#e5e7eb;--fill:#0f172a;--ok:#16a34a;--okbg:#dcfce7;--bad:#dc2626;--badbg:#fee2e2;--chip:#f1f5f9;--shadow:0 10px 30px rgba(15,23,42,.08);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#162033;--ink:#f1f5f9;--mute:#94a3b8;--line:#2a3750;--bar:#2a3750;--fill:#f1f5f9;--okbg:#14352368;--badbg:#4c1d1d88;--chip:#222f47;--shadow:0 10px 30px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#0b1220;--card:#162033;--ink:#f1f5f9;--mute:#94a3b8;--line:#2a3750;--bar:#2a3750;--fill:#f1f5f9;--okbg:#14352368;--badbg:#4c1d1d88;--chip:#222f47;--shadow:0 10px 30px rgba(0,0,0,.4)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+body{display:flex;justify-content:center;padding:64px 16px 32px}
+#theme{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:14px;width:44px;height:44px;border-radius:50%;border:0;background:var(--card);box-shadow:var(--shadow);font-size:20px;cursor:pointer;z-index:5}
+.card{width:100%;max-width:440px;background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:24px 20px}
+.top{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:15px}
+.top span:last-child{color:var(--mute)}
+.bar{height:8px;background:var(--bar);border-radius:99px;margin:12px 0 16px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--fill);border-radius:99px;transition:width .5s ease}
+.meta{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mute)}
+.chip{background:var(--chip);padding:5px 12px;border-radius:99px;font-weight:600;font-size:13px;color:var(--ink)}
+h1{font-size:30px;margin:0 0 8px;letter-spacing:-.5px}
+h2.q{font-size:24px;line-height:1.3;margin:20px 0 20px;letter-spacing:-.3px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;min-height:58px;padding:12px 16px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:18px;font-size:17px;text-align:left;cursor:pointer;font-family:inherit;transition:border-color .15s,background .15s}
+.opt b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--chip);display:grid;place-items:center;font-size:13px}
+.opt:active{transform:scale(.99)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt.ok b{background:var(--ok);color:#fff}
+.opt.bad b{background:var(--bad);color:#fff}
+.opt:disabled{cursor:default;color:var(--ink);opacity:1}
+.fb{margin-top:16px;padding:14px 16px;border-radius:16px;font-size:15px;line-height:1.45}
+.fb strong{display:block;margin-bottom:4px;font-size:16px}
+.fb.ok{background:var(--okbg)}.fb.ok strong{color:var(--ok)}
+.fb.bad{background:var(--badbg)}.fb.bad strong{color:var(--bad)}
+.btn{display:block;width:100%;min-height:56px;margin-top:16px;border:0;border-radius:18px;background:var(--fill);color:var(--bg);font-size:18px;font-weight:700;cursor:pointer;font-family:inherit}
+.btn.ghost{background:var(--chip);color:var(--ink)}
+.center{text-align:center}
+.sub{color:var(--mute);font-size:17px;margin:0 0 6px}
+.big{font-size:56px;margin:8px 0 12px}
+.ring{position:relative;width:170px;height:170px;margin:20px auto}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12}
+.ring .t{stroke:var(--bar)}
+.ring .f{stroke-linecap:round;transition:stroke-dashoffset 1s ease}
+.ring div{position:absolute;inset:0;display:grid;place-content:center;font-size:32px;font-weight:800}
+.ring small{font-size:13px;font-weight:600;color:var(--mute);text-align:center;display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.stat{background:var(--chip);border-radius:16px;padding:14px;text-align:center}
+.stat b{display:block;font-size:20px}.stat span{font-size:13px;color:var(--mute)}
+.level{display:inline-block;padding:8px 18px;border-radius:99px;font-weight:700;background:var(--chip)}
+h3{margin:24px 0 10px;font-size:17px}
+.miss{border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:10px;font-size:15px;line-height:1.45}
+.miss p{margin:0 0 6px;font-weight:600}
+.miss .r{color:var(--bad)}.miss .g{color:var(--ok)}.miss em{display:block;margin-top:6px;color:var(--mute);font-style:normal;font-size:14px;background:rgba(0,0,0,0.03);padding:8px;border-radius:8px}
+.inp{width:100%;min-height:56px;border:2px solid var(--line);border-radius:18px;padding:0 16px;font-size:17px;background:var(--card);color:var(--ink);font-family:inherit;margin-top:8px}
+.who{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-weight:600}
+.who button{border:0;background:var(--chip);color:var(--ink);border-radius:99px;padding:10px 16px;font-size:14px;cursor:pointer;font-family:inherit}
+.h{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}.h span:last-child{color:var(--mute);text-align:right}
+</style>
+</head>
+<body>
+<button id="theme" aria-label="Toggle theme">🌓</button>
+<main class="card" id="card"></main>
+<script>
+// [type, question, options (first = correct), Mongolian explanation]
+const Q=[
+['v','What day comes after Monday?',['Tuesday','Wednesday','Sunday','Friday'],'Даваа гарагийн дараа Мягмар (Tuesday) гарна.'],
+['v','What color is the sky on a sunny day?',['Blue','Green','Red','Black'],'Нарлаг өдөр тэнгэр цэнхэр (blue) байдаг.'],
+['v','What number comes after nine?',['Ten','Eight','Eleven','Seven'],'9-ийн дараа 10 буюу ten ирнэ.'],
+['v','Which month comes after January?',['February','March','December','April'],'1-р сарын дараа 2-р сар (February) ирнэ.'],
+['v','Your mother\'s mother is your ...',['grandmother','aunt','sister','daughter'],'Ээжийн ээж бол эмээ (grandmother).'],
+['v','Which one is a drink?',['Milk','Bread','Rice','Apple'],'Milk бол сүү, уух зүйл. Бусад нь хоол/жимс.'],
+['v','You write in a ...',['notebook','spoon','chair','window'],'Notebook бол дэвтэр, дэвтэрт бичдэг.'],
+['v','A person who teaches students is a ...',['teacher','doctor','driver','cook'],'Teacher бол багш, сурагчдад заадаг хүн.'],
+['v','Which animal says "meow"?',['Cat','Dog','Cow','Duck'],'Муур (cat) "meow" гэж дуугардаг.'],
+['v','You sleep in the ...',['bedroom','kitchen','bathroom','garden'],'Унтлагын өрөө = bedroom.'],
+['v','What is the opposite of "big"?',['small','tall','old','fast'],'Big (том)-ийн эсрэг үг нь small (жижиг).'],
+['v','How many days are in a week?',['Seven','Five','Six','Ten'],'Долоо хоногт 7 өдөр буюу seven days байдаг.'],
+['v','A person who helps sick people in a hospital is a ...',['doctor','farmer','pilot','singer'],'Doctor бол эмч.'],
+['v','Which one is yellow?',['Banana','Cherry','Carrot','Potato'],'Banana (гадил) шар өнгөтэй.'],
+['v','Your parents\' son is your ...',['brother','uncle','cousin','grandfather'],'Эцэг эхийн хүү бол ах/дүү (brother).'],
+['v','Which meal do you eat in the morning?',['Breakfast','Dinner','Lunch','Supper'],'Өглөөний хоол = breakfast.'],
+['v','What is the opposite of "hot"?',['cold','warm','nice','dry'],'Hot (халуун)-ын эсрэг нь cold (хүйтэн).'],
+['v','Which one is a vehicle?',['Bus','Table','Pencil','Shirt'],'Bus бол автобус, тээврийн хэрэгсэл.'],
+['v','What do you wear on your feet?',['Shoes','Hat','Gloves','Scarf'],'Хөлд гутал (shoes) өмсдөг.'],
+['v','What is 5 + 3?',['Eight','Seven','Nine','Six'],'5 + 3 = 8 буюу eight.'],
+['v','Which word is a color?',['Purple','Monday','Pizza','Doctor'],'Purple бол ягаан өнгө.'],
+['v','Where can you swim?',['In a swimming pool','In a library','In a bank','In an office'],'Swimming pool = усан сан, тэнд сэлдэг.'],
+['v','Which animal lives in water?',['Fish','Horse','Cow','Sheep'],'Fish (загас) усанд амьдардаг.'],
+['v','What is the opposite of "happy"?',['sad','hungry','tired','angry'],'Happy (баяртай)-н эсрэг нь sad (гунигтай).'],
+['v','Which one is a job?',['Pilot','Pencil','Pizza','Purple'],'Pilot бол нисгэгч, мэргэжил.'],
+['g','I ___ a student.',['am','is','are','be'],'"I" нэр томьёотой хамт "am" ашиглана: I am.'],
+['g','She ___ my sister.',['is','am','are','do'],'She/he/it-тэй "is" хэрэглэнэ.'],
+['g','They ___ from Mongolia.',['are','is','am','be'],'They/we/you-тэй "are" хэрэглэнэ.'],
+['g','He ___ a dog.',['has','have','having','haves'],'He/she/it-тэй "has" (байх, эзэмших) хэрэглэнэ.'],
+['g','I ___ two brothers.',['have','has','am','is'],'I/you/we/they-тэй "have" хэрэглэнэ.'],
+['g','There ___ a book on the table.',['is','are','am','be'],'Нэгж тоотой "There is" хэрэглэнэ.'],
+['g','There ___ three chairs in the room.',['are','is','am','has'],'Олон тоотой "There are" хэрэглэнэ.'],
+['g','My birthday is ___ May.',['in','on','at','to'],'Сарын өмнө "in" хэрэглэнэ: in May.'],
+['g','We have lunch ___ 12 o\'clock.',['at','in','on','to'],'Цагийн өмнө "at" хэрэглэнэ: at 12 o\'clock.'],
+['g','Anna is my friend. ___ is from Spain.',['She','He','It','They'],'Anna бол эмэгтэй нэр тул "She" хэрэглэнэ.'],
+['g','Tom and I are friends. ___ are happy.',['We','They','You','He'],'Tom болон би = бид, "We".'],
+['g','Birds ___ fly.',['can','is','are','has'],'"can" + үйл үг: can fly (нисч чадна).'],
+['g','A fish ___ walk.',['can\'t','can','is','has'],'Загас алхаж чадахгүй тул "can\'t".'],
+['g','___ is your name?',['What','Where','Who','When'],'Нэр асуухад "What is your name?" гэнэ.'],
+['g','___ do you live?',['Where','What','Who','How old'],'Хаана амьдардаг вэ гэж асуухдаа "Where".'],
+['g','She ___ to school every day.',['goes','go','going','is go'],'She-тэй Present Simple-д "goes" (-es нэмнэ).'],
+['g','I ___ breakfast at 7.',['have','has','having','haves'],'I-тэй "have breakfast" гэнэ.'],
+['g','He ___ not like fish.',['does','do','is','are'],'He-тэй үгүйсгэхэд "does not" хэрэглэнэ.'],
+['g','___ you like tea?',['Do','Does','Are','Is'],'You-тэй асуулт "Do you ...?" гэж эхэлнэ.'],
+['g','My mother ___ a teacher.',['is','are','am','have'],'My mother = she, тиймээс "is".'],
+['g','These ___ my books.',['are','is','am','be'],'These олон тоо тул "are".'],
+['g','This is ___ apple.',['an','a','any','many'],'Эгшгээр эхэлсэн үгийн өмнө "an": an apple.'],
+['g','She ___ TV in the evening.',['watches','watch','watchs','is watch'],'She-тэй "watch" нь "watches" болно.'],
+['g','How old ___ you?',['are','is','am','do'],'You-тэй "are": How old are you?'],
+['g','Is he a doctor? Yes, he ___.',['is','does','has','are'],'"Is he ...?" асуултад "Yes, he is." гэж хариулна.']
+];
+const L={A1:Q,
+A2:[
+['v','A place where you borrow books is a ...',['library','bakery','stadium','pharmacy'],'Номоо зээлдэг газар = library (номын сан).'],
+['v','If it is raining, take an ...',['umbrella','ticket','passport','mirror'],'Бороо орвол umbrella (шүхэр) авна.'],
+['v','The opposite of "cheap" is ...',['expensive','empty','early','quiet'],'Cheap (хямд)-ын эсрэг нь expensive (үнэтэй).'],
+['v','You buy medicine at a ...',['pharmacy','library','bakery','museum'],'Pharmacy = эмийн сан.'],
+['g','Yesterday I ___ to the park.',['went','go','goes','going'],'Өнгөрсөн цагт go нь "went" болдог.'],
+['g','She is ___ than her brother.',['taller','tallest','more tall','tall'],'Богино үгэнд харьцуулахдаа -er: taller than.'],
+['g','I am ___ a book now.',['reading','read','reads','to read'],'Яг одоо болж буй үйлдэл: am + V-ing.'],
+['g','We ___ visit Paris next year.',['are going to','is going to','goes to','going'],'Төлөвлөгөө: be going to. We-тэй "are".'],
+['v','A person who cooks in a restaurant is a ...',['chef','pilot','dentist','farmer'],'Chef = тогооч.'],
+['v','You use ___ to cut paper.',['scissors','a spoon','a towel','a pillow'],'Scissors = хайч.'],
+['v','The weather is cold. Wear a ...',['coat','swimsuit','sandals','shorts'],'Хүйтэнд coat (хүрэм) өмсөнө.'],
+['v','What is the opposite of "early"?',['late','fast','slow','young'],'Early-н эсрэг нь late (оройтсон).'],
+['v','The room where you cook is the ...',['kitchen','garage','balcony','hall'],'Kitchen = гал тогоо.'],
+['v','Which word is a season?',['Winter','Friday','Morning','April'],'Winter = өвөл, улирал.'],
+['v','To "arrive" means to ...',['get to a place','leave a place','stay at home','run away'],'Arrive = очих, хүрэх.'],
+['v','Your uncle\'s daughter is your ...',['cousin','niece','aunt','sister'],'Авга ах/хүүхний охин = cousin.'],
+['v','You can send letters at the ...',['post office','zoo','cinema','airport'],'Post office = шуудангийн газар.'],
+['v','Which word means "very big"?',['huge','tiny','thin','cheap'],'Huge = асар том.'],
+['v','We watch films at the ...',['cinema','bakery','bank','market'],'Cinema = кино театр.'],
+['v','What is the opposite of "difficult"?',['easy','heavy','dark','clean'],'Easy = амархан.'],
+['v','Which one is a fruit?',['Pear','Pasta','Pizza','Pepper'],'Pear = лийр, жимс.'],
+['v','I lost my keys. I am ...',['worried','delicious','windy','empty'],'Worried = санаа зовсон.'],
+['v','There are no clouds and the sun is shining. It is ...',['sunny','rainy','snowy','windy'],'Sunny = нартай.'],
+['v','A person who flies a plane is a ...',['pilot','driver','sailor','builder'],'Pilot = нисгэгч.'],
+['v','Where do you wait for a bus?',['At a bus stop','At a bank','In a shop','In a gym'],'Bus stop = автобусны буудал.'],
+['v','Which one is a hobby?',['Painting','Traffic','Rubbish','Illness'],'Painting = зураг зурах, хобби.'],
+['v','Breakfast, lunch and dinner are ...',['meals','jobs','sports','clothes'],'Meals = хоол.'],
+['v','To "borrow" a book means to ...',['take it for a short time','buy it','sell it','lose it'],'Borrow = түр зээлэх.'],
+['v','You need a ticket to ...',['enter a concert','cook dinner','wash clothes','learn maths'],'Тасалбар (ticket) нь концертод орох эрх.'],
+['g','There ___ any milk in the fridge.',['is not','are not','do not','not'],'Тоологдохгүй нэрэнд "is not any".'],
+['g','I ___ my homework yesterday.',['did','do','does','am doing'],'Өнгөрсөн цагт do → did.'],
+['g','She ___ a letter now.',['is writing','writes','write','wrote'],'Яг одоо: is + V-ing.'],
+['g','This is the ___ film I have ever seen.',['best','good','better','most good'],'Good-н дээд зэрэг: the best.'],
+['g','You ___ wear a seat belt in a car.',['must','can','may','did'],'Must = заавал, үүрэг.'],
+['g','___ you ever been to London?',['Have','Did','Are','Do'],'Туршлага: Have you ever been ...?'],
+['g','I have ___ finished my work.',['just','yesterday','ago','tomorrow'],'Present Perfect-тэй "just" хэрэглэнэ.'],
+['g','How ___ water do you drink?',['much','many','long','often'],'Тоологдохгүй нэрэнд "How much".'],
+['g','There are ___ apples in the bag.',['some','much','a','an'],'Олон тоо, баталгаатай өгүүлбэр: some apples.'],
+['g','He ___ TV when the phone rang.',['was watching','is watching','watch','has watch'],'Үргэлжилж байсан үйл: was + V-ing.'],
+['g','My brother is older ___ me.',['than','that','then','as'],'Харьцуулахдаа "than".'],
+['g','She can ___ the piano well.',['play','plays','playing','to play'],'Can-ийн дараа үйл үгийн анхны хэлбэр.'],
+['g','We ___ to the cinema last night.',['went','go','have gone','going'],'Last night = өнгөрсөн цаг: went.'],
+['g','What time ___ the film start?',['does','do','is','are'],'Film = it, тиймээс "does".'],
+['g','I do not have ___ money.',['any','some','a','an'],'Үгүйсгэлд "any" хэрэглэнэ.'],
+['g','He is ___ tallest boy in class.',['the','a','an','some'],'Дээд зэргийн өмнө "the".'],
+['g','Look! It ___ snowing.',['is','does','has','are'],'It is snowing = цас орж байна.'],
+['g','You should ___ a doctor.',['see','to see','seeing','saw'],'Should + үйл үгийн анхны хэлбэр.'],
+['g','I am interested ___ music.',['in','on','at','of'],'Interested in = сонирхох.'],
+['g','If you heat ice, it ___.',['melts','melt','melting','will melts'],'Үргэлж үнэн зүйл: Zero conditional, melts.'],
+['g','She has lived in Paris ___ five years.',['for','since','ago','from'],'Хугацаа (5 жил)-ын өмнө "for".']],
+B1:[
+['v','To "postpone" a meeting means to ...',['delay it','cancel it forever','start it','record it'],'Postpone = хойшлуулах.'],
+['v','A person who lives next to you is your ...',['neighbour','colleague','passenger','guest'],'Neighbour = хөрш.'],
+['v','If you are "exhausted", you are very ...',['tired','angry','hungry','lucky'],'Exhausted = маш ядарсан.'],
+['v','The opposite of "increase" is ...',['decrease','improve','arrive','continue'],'Increase (нэмэгдэх)-ийн эсрэг нь decrease (буурах).'],
+['g','If it rains tomorrow, we ___ at home.',['will stay','stayed','have stay','staying'],'First conditional: If + одоо цаг, will + V.'],
+['g','I have lived here ___ 2015.',['since','for','from','during'],'Эхэлсэн цэг (2015)-ийн өмнө "since" хэрэглэнэ.'],
+['g','This house ___ in 1990.',['was built','built','is built','has built'],'Passive өнгөрсөн цаг: was/were + V3.'],
+['g','She asked me where ___.',['I lived','did I live','do I live','lived I'],'Шууд бус асуултад өгүүлбэрийн дараалал хэвийн байна.'],
+['v','"Reduce" means to make something ...',['smaller','bigger','louder','longer'],'Reduce = багасгах.'],
+['v','A "journey" is a ...',['long trip','small meal','short sleep','kind of job'],'Journey = урт аялал.'],
+['v','If you "agree", you have the ___ opinion.',['same','opposite','first','worst'],'Agree = санал нийлэх.'],
+['v','A "refund" is when a shop gives your ___ back.',['money','bag','time','name'],'Refund = мөнгө буцаан олгох.'],
+['v','To "improve" means to become ...',['better','older','cheaper','taller'],'Improve = сайжрах.'],
+['v','A person who writes for newspapers is a ...',['journalist','dentist','plumber','engineer'],'Journalist = сэтгүүлч.'],
+['v','The opposite of "advantage" is ...',['disadvantage','disaster','decision','distance'],'Advantage-ийн эсрэг нь disadvantage.'],
+['v','Something "available" can be ...',['used or bought','broken','lost','forgotten'],'Available = боломжтой, байгаа.'],
+['v','To "recommend" a restaurant means to say it is ...',['good','closed','new','far'],'Recommend = санал болгох.'],
+['v','You must ___ a form to apply for the job.',['fill in','fill up','fill on','fill at'],'Fill in a form = маягт бөглөх.'],
+['v','A "customer" is a person who ...',['buys things','sells things','makes things','fixes things'],'Customer = худалдан авагч.'],
+['v','The opposite of "success" is ...',['failure','fortune','freedom','friendship'],'Failure = бүтэлгүйтэл.'],
+['v','To "explain" something is to make it ...',['clear','large','loud','cold'],'Explain = тайлбарлах.'],
+['v','A "salary" is money you get from your ...',['job','garden','holiday','dream'],'Salary = цалин.'],
+['v','To "borrow" money is to ___ it from someone.',['take','give','send','hide'],'Borrow = зээлж авах.'],
+['v','Someone who is "generous" likes to ...',['give things','keep things','break things','hide things'],'Generous = өгөөмөр.'],
+['v','Working abroad was a great ___ for me.',['experience','expression','exercise','explanation'],'Experience = туршлага.'],
+['v','People who watch a match are ...',['spectators','passengers','tourists','patients'],'Spectators = үзэгчид.'],
+['v','A "bargain" is something you buy at a ___ price.',['low','high','secret','new'],'Bargain = хямдралтай худалдан авалт.'],
+['v','To "damage" a car means to ...',['harm it','wash it','sell it','park it'],'Damage = гэмтээх.'],
+['v','A "habit" is something you do ...',['regularly','never','once','by mistake'],'Habit = дадал, тогтмол хийдэг зүйл.'],
+['g','If I ___ rich, I would travel the world.',['were','am','will be','would be'],'Second conditional: If I were ...'],
+['g','I ___ him since last year.',['have not seen','did not see','do not see','am not seeing'],'Since + Present Perfect.'],
+['g','The window ___ by a boy yesterday.',['was broken','broke','is broken','has break'],'Passive өнгөрсөн цаг: was + V3.'],
+['g','She said she ___ tired.',['was','is','will be','has been'],'Шууд бус ярианд цаг нэг алхам ухарна.'],
+['g','You ___ smoke here. It is forbidden.',['must not','do not have to','need not','can to'],'Must not = хориотой.'],
+['g','I ___ to London three times.',['have been','was','am','go'],'Туршлага: Present Perfect, have been.'],
+['g','He is the man ___ car was stolen.',['whose','who','which','whom'],'Whose = эзэмшлийг заана.'],
+['g','I am used to ___ up early.',['getting','get','got','gets'],'Be used to + V-ing.'],
+['g','While I ___, the phone rang.',['was cooking','cooked','cook','have cooked'],'Үргэлжилж байсан үйл: was + V-ing.'],
+['g','She ___ here for two hours.',['has been waiting','waits','is wait','waited'],'Хугацаатай үргэлжилсэн үйл: has been waiting.'],
+['g','I would rather ___ at home tonight.',['stay','to stay','staying','stayed'],'Would rather + анхны хэлбэр.'],
+['g','He told me ___ late.',['not to be','to not being','do not be','not be'],'Tell + хүн + (not) to + V.'],
+['g','If you ___ harder, you would pass.',['studied','study','will study','had study'],'Second conditional: If + өнгөрсөн цаг.'],
+['g','This is ___ interesting book I have read.',['the most','more','most','the more'],'Урт тэмдэг нэрийн дээд зэрэг: the most.'],
+['g','I ___ finish this by Friday, I promise.',['will','am','do','did'],'Амлалт: will.'],
+['g','Neither Tom ___ Anna came.',['nor','or','and','but'],'Neither ... nor = ...ч ...ч биш.'],
+['g','Do you mind ___ the window?',['opening','open','to open','opened'],'Mind + V-ing.'],
+['g','She is ___ to win the match.',['likely','probably','possibly','maybe'],'Be likely to = байх магадлалтай.'],
+['g','I ___ my keys. Can you help me find them?',['have lost','lose','will lose','am losing'],'Одоо ч нөлөөтэй үр дүн: have lost.'],
+['g','The more you practise, ___ you become.',['the better','better','the best','best'],'The more ..., the better ...'],
+['g','It is the first time I ___ sushi.',['have eaten','ate','eat','am eating'],'The first time + Present Perfect.']],
+B2:[
+['v','A "reliable" person is someone you can ...',['trust','avoid','copy','forget'],'Reliable = найдвартай, итгэж болох.'],
+['v','To "cope with" a problem means to ...',['deal with it','ignore it','create it','forget it'],'Cope with = даван туулах.'],
+['v','The government introduced a new ___ to reduce pollution.',['policy','recipe','journey','fashion'],'Policy = бодлого.'],
+['v','If a plan is "feasible", it is ...',['possible to do','very expensive','illegal','too old'],'Feasible = хэрэгжих боломжтой.'],
+['g','If I ___ you, I would apologise.',['were','am','was being','will be'],'Second conditional: If I were you, ...'],
+['g','By next year, she ___ here for ten years.',['will have worked','will work','works','has worked'],'Future perfect: will have + V3.'],
+['g','He suggested ___ a taxi.',['taking','to take','take','took'],'Suggest + V-ing.'],
+['g','I wish I ___ more free time.',['had','have','would have','having'],'Одоогийн хүсэл (бодит бус): wish + өнгөрсөн цаг.'],
+['v','To "assume" something is to ...',['suppose it is true','prove it','forget it','deny it'],'Assume = таамаглах.'],
+['v','A "drawback" of a plan is its ...',['disadvantage','price','date','author'],'Drawback = сул тал.'],
+['v','If prices "soar", they ...',['rise quickly','fall slowly','stay the same','disappear'],'Soar = огцом өсөх.'],
+['v','To "overcome" a difficulty means to ...',['succeed in dealing with it','avoid it','cause it','admit it'],'Overcome = даван туулах.'],
+['v','An "obstacle" is something that ...',['blocks your way','helps you','feeds you','warms you'],'Obstacle = саад бэрхшээл.'],
+['v','A "shortage" of water means there is ...',['not enough','too much','clean water','cold water'],'Shortage = хомсдол.'],
+['v','To "convince" someone is to make them ...',['believe something','laugh','leave','sleep'],'Convince = итгүүлэх.'],
+['v','A "deadline" is the ...',['latest time to finish','first day of work','break time','start of a game'],'Deadline = эцсийн хугацаа.'],
+['v','"Reluctant" means ...',['unwilling','enthusiastic','generous','clever'],'Reluctant = дургүйцсэн, хүсэхгүй байгаа.'],
+['v','A "workforce" is all the people who ...',['work for a company','visit a shop','study abroad','retire early'],'Workforce = ажиллах хүч.'],
+['v','To "estimate" the cost is to ...',['guess it roughly','pay it','hide it','cut it'],'Estimate = ойролцоогоор тооцох.'],
+['v','A "reputation" is what people ...',['think of you','owe you','call you at night','teach you'],'Reputation = нэр хүнд.'],
+['v','To "tackle" a problem means to ...',['try to solve it','ignore it','forget it','describe it'],'Tackle = шийдэхээр оролдох.'],
+['v','A "benefit" is a ...',['good result','bad habit','long queue','small mistake'],'Benefit = ашиг тус.'],
+['v','Someone "ambitious" wants to ...',['succeed','rest','hide','complain'],'Ambitious = амбицтай.'],
+['v','To "inherit" money means to receive it from a ...',['relative who has died','shop','teacher','neighbour'],'Inherit = өв залгамжлах.'],
+['v','If two companies "merge", they ...',['join together','close down','move abroad','become famous'],'Merge = нэгдэх.'],
+['v','A "witness" is a person who ...',['saw an event','broke the law','owns a shop','builds houses'],'Witness = гэрч.'],
+['v','To "boost" sales means to ...',['increase them','stop them','count them','hide them'],'Boost = өсгөх.'],
+['v','Something "essential" is ...',['absolutely necessary','slightly useful','very old','rather rare'],'Essential = зайлшгүй шаардлагатай.'],
+['v','An "outcome" is the ...',['result','beginning','cost','rule'],'Outcome = үр дүн.'],
+['g','She denied ___ the money.',['taking','to take','take','took'],'Deny + V-ing.'],
+['g','I am looking forward ___ you.',['to seeing','to see','seeing','see'],'Look forward to + V-ing.'],
+['g','The meeting ___ by the time we arrived.',['had finished','has finished','finishes','was finish'],'Өмнө болсон үйл: Past Perfect.'],
+['g','He must ___ left already; his car is gone.',['have','has','had','be'],'Must have + V3 = таамаг дүгнэлт.'],
+['g','Despite ___ tired, she kept working.',['being','she was','to be','is'],'Despite + V-ing.'],
+['g','I would have called you if I ___ your number.',['had had','have','would have','had'],'Third conditional: if + had + V3.'],
+['g','Not until midnight ___ home.',['did he get','he got','got he','he did get'],'Not until-ийн дараа inversion.'],
+['g','The man ___ I spoke to was helpful.',['whom','whose','which','what'],'Хүнийг заасан тусагдахуун: whom.'],
+['g','She is believed ___ abroad.',['to live','live','living','lives'],'Is believed + to + V.'],
+['g','By the time you arrive, I ___ dinner.',['will have cooked','will cook','am cooking','cooked'],'Future perfect.'],
+['g','I regret ___ him the truth.',['not telling','not to tell','do not tell','not told'],'Regret + V-ing = харамсах.'],
+['g','You ___ have told me earlier!',['should','must','can','will'],'Should have + V3 = шүүмжлэл.'],
+['g','It is high time we ___ a decision.',['made','make','will make','have to made'],'It is high time + өнгөрсөн цаг.'],
+['g','She works hard so that she ___ pass.',['can','to','does','is'],'So that + can = зорилго.'],
+['g','He spoke as if he ___ everything.',['knew','knows','will know','has known'],'As if + бодит бус: өнгөрсөн цаг.'],
+['g','Hardly ___ arrived when it started to rain.',['had we','we had','did we','have we'],'Hardly + inversion.'],
+['g','I am not used to ___ in such cold weather.',['living','live','lived','lives'],'Be used to + V-ing.'],
+['g','The room ___ cleaned right now.',['is being','is','has','does'],'Passive үргэлжилж буй: is being + V3.'],
+['g','Would you mind ___ me a hand?',['giving','give','to give','gave'],'Mind + V-ing.'],
+['g','He insisted ___ paying for dinner.',['on','at','to','of'],'Insist on + V-ing.'],
+['g','If only I ___ the answer!',['knew','know','will know','known'],'If only + бодит бус: өнгөрсөн цаг.']],
+C1:[
+['v','A "meticulous" person pays great attention to ...',['detail','money','fame','weather'],'Meticulous = нямбай, нарийн сайн.'],
+['v','"Ubiquitous" means found ...',['everywhere','rarely','underground','illegally'],'Ubiquitous = хаа сайгүй байдаг.'],
+['v','To "mitigate" a risk means to make it ...',['less severe','more likely','invisible','famous'],'Mitigate = эрсдэлийг бууруулах.'],
+['v','Her argument was so ___ that nobody could disagree.',['compelling','fragile','spare','casual'],'Compelling = ятгах хүчтэй.'],
+['g','Not only ___ late, but he also forgot the documents.',['did he arrive','he arrived','arrived he','he did arrive'],'"Not only" өгүүлбэр эхлэхэд inversion: did he arrive.'],
+['g','Had I known, I ___ differently.',['would have acted','will act','would act','had acted'],'Third conditional inversion: Had I known = If I had known.'],
+['g','The report, ___ was published yesterday, caused debate.',['which','what','who','where'],'Юмыг заасан нэмэлт өгүүлбэрт "which".'],
+['g','It is essential that he ___ on time.',['be','is','will be','was'],'Essential that + subjunctive: he be.'],
+['v','"Ambiguous" means having ___ meaning.',['more than one','no','a hidden','a funny'],'Ambiguous = хоёрдмол утгатай.'],
+['v','To "undermine" confidence is to ...',['weaken it gradually','build it','measure it','record it'],'Undermine = сулруулах.'],
+['v','"Plausible" means ...',['believable','dangerous','ancient','funny'],'Plausible = үнэмшилтэй.'],
+['v','A "scarce" resource is ...',['hard to find','everywhere','free','new'],'Scarce = цөөхөн, хомс.'],
+['v','"Inevitable" means ...',['impossible to avoid','very unlikely','easy to change','already finished'],'Inevitable = зайлшгүй.'],
+['v','To "advocate" a policy is to ...',['publicly support it','forget it','break it','hide it'],'Advocate = дэмжиж сурталчлах.'],
+['v','A "dilemma" is a situation with ...',['difficult choices','no people','big profits','good weather'],'Dilemma = хоёр хүнд сонголт.'],
+['v','To "scrutinise" a document is to ...',['examine it carefully','copy it','burn it','print it'],'Scrutinise = нарийн шалгах.'],
+['v','"Tangible" evidence is evidence you can ...',['clearly see or touch','deny','forget','imagine'],'Tangible = бодитой, мэдрэгдэхүйц.'],
+['v','A "predecessor" is the person who ___ you in a job.',['came before','replaced','helped','fired'],'Predecessor = өмнөх хүн.'],
+['v','To "alleviate" pain is to ...',['reduce it','cause it','describe it','measure it'],'Alleviate = хөнгөвчлөх.'],
+['v','"Blatant" lies are ...',['obvious','secret','small','rare'],'Blatant = ил тод, ичгүүргүй.'],
+['v','A "pragmatic" approach is ...',['practical','dreamy','expensive','aggressive'],'Pragmatic = практик.'],
+['v','To "elaborate" means to give more ...',['detail','money','time','people'],'Elaborate = нарийвчлан тайлбарлах.'],
+['v','A "bias" is an unfair ...',['preference','price','rule','map'],'Bias = нэг талыг барьсан хандлага.'],
+['v','"Prone to" mistakes means ...',['likely to make them','unable to make them','proud of them','afraid of them'],'Prone to = өртөмтгий.'],
+['v','"Surplus" means an amount that is ...',['extra','missing','hidden','late'],'Surplus = илүүдэл.'],
+['v','To "withstand" pressure is to ...',['resist it','create it','ignore it','admire it'],'Withstand = тэсвэрлэх.'],
+['v','A "loophole" in a law is a ...',['gap people can exploit','new rule','punishment','judge'],'Loophole = хуулийн цоорхой.'],
+['v','"Resilient" people ...',['recover quickly from problems','give up easily','avoid people','talk loudly'],'Resilient = тэсвэр хатуужилтай.'],
+['v','A "consensus" is a ___ agreement.',['general','secret','private','temporary'],'Consensus = нийтийн зөвшилцөл.'],
+['g','Rarely ___ such a talented musician.',['have I met','I have met','met I','I met'],'Rarely эхлэхэд inversion.'],
+['g','Had it not been for your help, I ___ failed.',['would have','will have','had','would'],'Third conditional inversion.'],
+['g','She spoke so quietly ___ nobody heard her.',['that','than','as','what'],'So ... that = маш ... тул ...'],
+['g','No sooner had he left ___ the phone rang.',['than','when','then','that'],'No sooner ... than.'],
+['g','The proposal, ___ details are secret, was approved.',['whose','which','what','that'],'Whose + нэр үг = эзэмшил.'],
+['g','I would sooner you ___ smoke here.',['did not','do not','will not','have not'],'Would sooner + S + өнгөрсөн цаг.'],
+['g','She is said to ___ working on a novel.',['be','being','been','have'],'Is said + to be + V-ing.'],
+['g','Under no circumstances ___ the door.',['should you open','you should open','open you','you open'],'Under no circumstances + inversion.'],
+['g','It is vital that every student ___ the form.',['complete','completes','completed','will complete'],'Vital that + subjunctive.'],
+['g','The more complex the task, ___ it takes.',['the longer','longer','the long','more long'],'The more ..., the longer ...'],
+['g','Having finished his work, ___.',['he went home','home went he','going home he','his home went'],'Participle-ийн subject нь гол өгүүлбэрийн subject.'],
+['g','I would have gone ___ I known about the party.',['had','if not','have','were'],'Had I known = If I had known.'],
+['g','Little ___ she know that he was watching.',['did','does','had','was'],'Little эхлэхэд inversion: did she know.'],
+['g','He is reported ___ the country last night.',['to have left','to leave','leaving','left'],'Өнгөрсөн үйл: to have + V3.'],
+['g','Only after the meeting ___ the truth.',['did she learn','she learned','learned she','she did learn'],'Only after + inversion.'],
+['g','I am accustomed ___ in noisy places.',['to working','to work','working','work'],'Be accustomed to + V-ing.'],
+['g','By 2030, scientists ___ a cure.',['will have found','will find','find','found'],'Future perfect.'],
+['g','It was not until later ___ I realised.',['that','when','which','what'],'It was not until ... that ...'],
+['g','Should you need help, ___ me.',['call','calling','called','to call'],'Should-оор эхэлсэн нөхцөл + командын хэлбэр.'],
+['g','The phone, ___ I had left on the table, rang.',['which','who','where','what'],'Юмыг заасан нэмэлт өгүүлбэр: which.'],
+['g','Such ___ his talent that he won easily.',['was','is being','were','had'],'Such + be + нэр үг (inversion).']],
+C2:[
+['v','"Ephemeral" describes something that lasts ...',['a very short time','a very long time','only at night','without end'],'Ephemeral = түр зуурын.'],
+['v','To "exacerbate" a problem is to make it ...',['worse','clearer','smaller','older'],'Exacerbate = улам хурцатгах.'],
+['v','A "fastidious" person is hard to ...',['please','hear','reach','believe'],'Fastidious = хэтэрхий нямбай, таалагдахад хэцүү.'],
+['v','"Nonchalant" means appearing ...',['casually unconcerned','deeply angry','extremely tired','very generous'],'Nonchalant = хайхрамжгүй, тайван.'],
+['g','Scarcely ___ the room when the lights went out.',['had she entered','she had entered','did she enter','she entered'],'Scarcely + had + S + V3 ... when.'],
+['g','He behaved as though he ___ the owner.',['were','is','will be','has been'],'As though + бодит бус: he were.'],
+['g','Hardly anyone ___ the significance of the discovery.',['realised','has realised','is realising','realise'],'Өнгөрсөн үйл явдал: realised.'],
+['g','She is said ___ the first woman to climb it.',['to have been','to be','having been','that was'],'Өнгөрсөн үйл: is said + to have been.'],
+['v','"Ostensibly" means ...',['apparently, but perhaps not truly','certainly','secretly','rarely'],'Ostensibly = гаднаа харахад.'],
+['v','To "obfuscate" is to make something ...',['unclear','bright','shorter','public'],'Obfuscate = будлиулах.'],
+['v','A "sycophant" is a person who ...',['flatters powerful people','leads armies','avoids work','studies insects'],'Sycophant = дагавар зусар.'],
+['v','"Pernicious" effects are ...',['harmful in a subtle way','pleasantly small','easily visible','short-lived'],'Pernicious = аажмаар хор хөнөөдөг.'],
+['v','"Quintessential" means ...',['the perfect example','rather minor','very recent','hard to find'],'Quintessential = жинхэнэ жишээ.'],
+['v','An "equivocal" statement is ...',['open to more than one meaning','completely honest','very loud','well proven'],'Equivocal = хоёрдмол утгатай.'],
+['v','To "mollify" someone is to ...',['calm their anger','increase their fear','warn them','ignore them'],'Mollify = уур амьсгалыг намжаах.'],
+['v','A "cursory" glance is ...',['quick and not thorough','long and careful','angry','secret'],'Cursory = дөнгөж харсан, өнгөц.'],
+['v','"Laconic" speech uses ...',['very few words','many words','loud words','foreign words'],'Laconic = товч, цөөн үгтэй.'],
+['v','To "ostracise" someone is to ...',['exclude them from a group','promote them','photograph them','invite them'],'Ostracise = нийгмээс гадуурхах.'],
+['v','A "truculent" person is ...',['aggressively defiant','extremely shy','very generous','slightly tired'],'Truculent = дайсагнасан, зөрүүд.'],
+['v','A "clandestine" meeting is ...',['secret','public','brief','annual'],'Clandestine = нууц.'],
+['v','"Magnanimous" in victory means ...',['generous toward others','proud and rude','silent','nervous'],'Magnanimous = өгөөмөр, өргөн цаст.'],
+['v','To "vindicate" someone is to ...',['clear them of blame','accuse them','replace them','pay them'],'Vindicate = цагаатгах.'],
+['v','An "ineffable" feeling is too great ...',['to be described in words','to be hidden','to last','to be ignored'],'Ineffable = үгээр хэлж боломгүй.'],
+['v','"Perfunctory" means done ...',['without real interest or care','with great skill','very slowly','in secret'],'Perfunctory = албан ёсны, хайхрамжгүй.'],
+['v','A "salient" point is the ...',['most noticeable or important','least important','newest','longest'],'Salient = гол, тод.'],
+['v','"Obsequious" behaviour is ...',['excessively eager to please','openly hostile','quite lazy','rather funny'],'Obsequious = хэтэрхий зусарсан.'],
+['v','To "ameliorate" a situation is to make it ...',['better','worse','public','longer'],'Ameliorate = сайжруулах.'],
+['v','"Recalcitrant" means ...',['stubbornly resistant to authority','easily led','extremely rich','very small'],'Recalcitrant = дарга нарт зөрүүд.'],
+['v','An "idiosyncratic" habit is ...',['peculiar to one person','common to all','illegal','ancient'],'Idiosyncratic = хувь хүний өвөрмөц.'],
+['g','Seldom ___ such courage.',['have I witnessed','I have witnessed','witnessed I','I witnessed'],'Seldom + inversion.'],
+['g','Were he to resign, the company ___ in trouble.',['would be','were','had been','is being'],'Were he to = If he were to; would be.'],
+['g','So absorbed ___ in the book that she missed her stop.',['was she','she was','had she','did she'],'So + adj эхэлбэл inversion.'],
+['g','On no account ___ the building.',['must you leave','you must leave','leave you','you leave'],'On no account + inversion.'],
+['g','She insisted that the report ___ revised.',['be','is','was being','has been'],'Insist that + subjunctive.'],
+['g','Much as I admire her, I ___ with her decision.',['disagree','disagrees','disagreeing','to disagree'],'Much as = хэдийгээр; I disagree.'],
+['g','Try as he ___, he could not open the door.',['might','will','does','had'],'Try as he might = хичнээн оролдсон ч.'],
+['g','It is imperative that she ___ informed immediately.',['be','is','was','will be'],'Imperative that + subjunctive.'],
+['g','Only when ___ did he understand.',['he was older','was he older','older he was','he older was'],'Only when нөхцөлд дараах үйл үг нь inversion.'],
+['g','Never before ___ such a spectacle.',['had they seen','they had seen','seen they had','they seen'],'Never before + inversion.'],
+['g','Whoever ___ the key must return it.',['has','have','having','to have'],'Whoever = he/she, тиймээс "has".'],
+['g','The findings, ___ are controversial, were published.',['some of which','some','that of','them of'],'Some of which = тэдгээрийн зарим.'],
+['g','He would have won, ___ for an injury.',['but','if','unless','then'],'But for = ... байгаагүй бол.'],
+['g','Not a word ___ throughout the meeting.',['did she say','she said','said she','she did say'],'Not a word + inversion.'],
+['g','Having been warned repeatedly, ___.',['he ignored the signs','the signs were ignored','the ignoring of signs','signs ignored him'],'Participle-ийн subject = he.'],
+['g','I would rather she ___ him the truth then.',['had told','told','has told','would tell'],'Would rather + had + V3 (өнгөрсөн харамсал).'],
+['g','The committee will meet ___ the report is ready.',['once','since','during','whereas'],'Once = ...ний даруй.'],
+['g','She acted ___ she knew all along.',['as though','despite','unless','whereas'],'As though = мэт.'],
+['g','Whatever the outcome, we ___ proud of you.',['will remain','remains','remaining','remained'],'Ирээдүйн амлалт: will remain.'],
+['g','It is no use ___ to persuade him.',['trying','to try','try','tried'],'It is no use + V-ing.'],
+['g','Not only ___ the exam, she also got the top score.',['did she pass','she passed','passed she','she did pass'],'Not only + inversion.']]};
+const LV={Mix:'Random Mix',A1:'Анхан',A2:'Анхдагч',B1:'Дунд',B2:'Дунд дээд',C1:'Ахисан',C2:'Эзэмшсэн'};
+let lvl='A1';
+let mode='all';
+let N=30;
+const card=document.getElementById('card');
+let quiz,i,score,wrong,answered,g,v;
+const TN={g:'Grammar',v:'Vocabulary'};
+
+function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+
+let DB={cur:null,users:{}},t0=0;
+try{const r=localStorage.getItem('a1db');if(r)DB=JSON.parse(r);}catch(e){}
+function saveDB(){try{localStorage.setItem('a1db',JSON.stringify(DB));}catch(e){}}
+const U=()=>DB.users[DB.cur];
+const esc=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function fmt(t){try{return new Date(t).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}catch(e){return '';}}
+
+function profiles(){
+  const names=Object.keys(DB.users);
+  card.innerHTML='<div class="center"><div class="big">👤</div><h1>Профайл</h1><p class="sub" style="font-size:15px">Дүнгээ хадгалахын тулд профайл үүсгээрэй</p></div><input id="nm" class="inp" maxlength="20" placeholder="Нэрээ оруулна уу" autocomplete="off"><button class="btn" id="mk">Профайл Үүсгэх</button>'+
+   (names.length?'<h3>Хадгалсан профайлууд</h3><div class="opts">'+names.map(n=>'<button class="opt" data-n="'+esc(n)+'"><b>👤</b><span>'+esc(n)+'</span></button>').join('')+'</div>':'');
+  const pick=n=>{DB.cur=n;saveDB();home();};
+  document.getElementById('mk').onclick=()=>{
+    const n=document.getElementById('nm').value.trim();if(!n)return;
+    if(!DB.users[n])DB.users[n]={best:{},hist:[],prog:null,seen:[]};
+    pick(n);};
+  card.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(b.dataset.n));
+}
+
+function home(){
+  if(!DB.cur||!DB.users[DB.cur])return profiles();
+  const u=U();
+  if(!u.seen) u.seen = []; // Асуултын түүх хадгалах жагсаалт
+  
+  let h='<div class="who"><span>👤 '+esc(DB.cur)+'</span><button id="sw">Солих</button></div><div class="center"><h1>English Level Test</h1><p class="sub" style="font-size:15px;margin-bottom:16px">Түвшингөө сонгоно уу</p></div>';
+  if(u.prog)h+='<button class="btn" id="res" style="margin:0 0 14px">▶ Үргэлжлүүлэх '+u.prog.lvl+' · Асуулт '+(u.prog.i+1)+'/'+u.prog.quiz.length+'</button>';
+  h+='<div class="opts">';
+  Object.keys(L).forEach(k=>{const b=u.best[k];
+    h+='<button class="opt" data-l="'+k+'"><b style="width:44px;border-radius:12px">'+k+'</b><span>'+LV[k]+'<br><small style="color:var(--mute)">30 асуулт'+(b!==undefined?' · Сайн оноо: '+b+'/'+u.best[k+'_n']:'')+'</small></span></button>';});
+  const mb=u.best.Mix;
+  h+='<button class="opt" data-l="Mix"><b style="width:44px;border-radius:12px">🎲</b><span>Холимог Түвшин<br><small style="color:var(--mute)">30 санамсаргүй асуулт'+(mb!==undefined?' · Сайн оноо: '+mb+'/30':'')+'</small></span></button></div>';
+  if(u.hist.length)h+='<h3>Өмнөх түүх</h3>'+u.hist.slice(0,8).map(x=>'<div class="h"><span>'+x.lvl+' ('+(x.m==='g'?'Дүрэм':x.m==='v'?'Үгс':'Бүгд')+') · '+x.s+'/'+x.n+' ('+((x.s/x.n)*100).toFixed(1)+'%)</span><span>Эхэлсэн: '+fmt(x.t0)+'<br>Дууссан: '+fmt(x.t1)+'</span></div>').join('');
+  card.innerHTML=h;
+  document.getElementById('sw').onclick=profiles;
+  const r=document.getElementById('res');if(r)r.onclick=resume;
+  card.querySelectorAll('.opt').forEach(b=>b.onclick=()=>selectCategory(b.dataset.l));
+}
+
+function selectCategory(l){
+  lvl=l;
+  card.innerHTML=
+   '<div class="center"><h1>Төрөл Сонгох</h1><p class="sub">Түвшин: '+lvl+' ('+LV[lvl]+')</p></div>'+
+   '<div class="opts" style="margin-top:20px">'+
+   '<button class="opt" id="m_g"><b style="width:44px;border-radius:12px">📚</b><span>Дүрэм (Grammar)<br><small style="color:var(--mute)">Дагнан дүрмийн 30 асуулт</small></span></button>'+
+   '<button class="opt" id="m_v"><b style="width:44px;border-radius:12px">🔤</b><span>Үгийн сан (Vocabulary)<br><small style="color:var(--mute)">Дагнан үгийн сангийн 30 асуулт</small></span></button>'+
+   '<button class="opt" id="m_all"><b style="width:44px;border-radius:12px">⚡</b><span>Холимог (Бүгд)<br><small style="color:var(--mute)">Дүрэм + Үгийн сан холимог 30 асуулт</small></span></button>'+
+   '</div>'+
+   '<button class="btn ghost" id="back" style="margin-top:20px">Буцах</button>';
+   
+  document.getElementById('m_g').onclick=()=>start('g');
+  document.getElementById('m_v').onclick=()=>start('v');
+  document.getElementById('m_all').onclick=()=>start('all');
+  document.getElementById('back').onclick=home;
+}
+
+function saveProg(){U().prog={lvl,mode,quiz,i,score,wrong,g,v,t0};saveDB();}
+function resume(){const p=U().prog;lvl=p.lvl;mode=p.mode||'all';quiz=p.quiz;N=quiz.length;i=p.i;score=p.score;wrong=p.wrong;g=p.g;v=p.v;t0=p.t0;renderQ();}
+
+function start(m){
+  if(m)mode=m;
+  let pool = lvl==='Mix'? [].concat(...Object.values(L)) : L[lvl];
+  
+  if(mode==='g'){
+    pool = pool.filter(q=>q[0]==='g');
+  }else if(mode==='v'){
+    pool = pool.filter(q=>q[0]==='v');
+  }
+  
+  const u = U();
+  if(!u.seen) u.seen = [];
+
+  // Өмнө нь ажиллаж байсан болон ажиллаагүй асуултуудыг салгах (Давхцуулахгүй байх алгоритм)
+  let unseen = pool.filter(q => !u.seen.includes(q[1]));
+  let seen = pool.filter(q => u.seen.includes(q[1]));
+
+  // Эхлээд үзээгүй асуултуудаас авна. Хэрэв хүрэхгүй бол үзсэнээс нэмнэ
+  let selected = shuffle(unseen.slice());
+  if (selected.length < 30) {
+    selected = selected.concat(shuffle(seen.slice())).slice(0, 30);
+  } else {
+    selected = selected.slice(0, 30);
+  }
+
+  quiz = selected.map(q => ({t: q[0], q: q[1], o: shuffle(q[2].slice()), a: q[2][0], e: q[3]}));
+  
+  // Энэ тестийн асуултуудыг үзсэн түүхэнд бүртгэх
+  quiz.forEach(item => {
+    if(!u.seen.includes(item.q)) u.seen.push(item.q);
+  });
+  // Түүхийг сүүлийн 150 асуултаар хязгаарлах (давтагдах циклийг уян хатан байлгах)
+  if(u.seen.length > 150) u.seen = u.seen.slice(-150);
+
+  N=quiz.length;i=0;score=0;wrong=[];g=[0,0];v=[0,0];t0=Date.now();
+  saveProg();renderQ();
+}
+
+function renderQ(){
+  answered=false;
+  const q=quiz[i],pct=Math.round((i+1)/N*100),prev=Math.round(i/N*100);
+  card.innerHTML=
+   '<div class="top"><span>Асуулт '+(i+1)+'/'+N+'</span><span>'+pct+'%</span></div>'+
+   '<div class="bar"><i id="fill" style="width:'+prev+'%"></i></div>'+
+   '<div class="meta"><span class="chip">'+lvl+' · '+TN[q.t]+'</span><span>Оноо: <b id="sc">'+score+'</b></span></div>'+
+   '<h2 class="q">'+q.q+'</h2>'+
+   '<div class="opts">'+q.o.map((o,k)=>'<button class="opt" data-k="'+k+'"><b>'+'ABCD'[k]+'</b><span>'+o+'</span></button>').join('')+'</div>'+
+   '<div id="fb"></div><div id="nx"></div>';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{const f=document.getElementById('fill');if(f)f.style.width=pct+'%';}));
+  card.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+}
+
+function pick(k){
+  if(answered)return;
+  answered=true;
+  const q=quiz[i],btns=card.querySelectorAll('.opt'),ok=q.o[k]===q.a,s=q.t==='g'?g:v;
+  s[1]++;
+  btns.forEach((b,n)=>{b.disabled=true;if(q.o[n]===q.a)b.classList.add('ok');});
+  if(ok){
+    score++;s[0]++;
+  }else{
+    btns[k].classList.add('bad');
+    wrong.push({q:q.q,mine:q.o[k],a:q.a,e:q.e});
+  }
+  document.getElementById('sc').textContent=score;
+  
+  document.getElementById('fb').innerHTML=ok
+   ?'<div class="fb ok"><strong>✓ Зөв хариуллаа!</strong>'+q.e+'</div>'
+   :'<div class="fb bad"><strong>✗ Буруу хариуллаа!</strong>Таны сонгосон: <b>'+q.o[k]+'</b><br>Зөв хариулт: <b>'+q.a+'</b><br><br><b>Тайлбар:</b> '+q.e+'</div>';
+   
+  document.getElementById('nx').innerHTML='<button class="btn" id="next">'+(i===N-1?'Үр дүн харах':'Дараах')+'</button>';
+  
+  const nxt = document.getElementById('next');
+  nxt.onclick=next;
+  nxt.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function next(){if(!answered)return;i++;if(i>=N)finish();else{saveProg();renderQ();}}
+
+function finish(){
+  const pctFloat = (score / N) * 100;
+  const pct = pctFloat.toFixed(1);
+  
+  const lv=pctFloat>=90?['Онц сайн','#16a34a']:pctFloat>=70?['Сайн','#2563eb']:pctFloat>=50?['Дунджаар','#d97706']:['Дахин давтах шаардлагатай','#dc2626'];
+  {
+    const u=U();
+    const key=lvl+'_'+mode;
+    if(u.best[key]===undefined||score>u.best[key]){u.best[key]=score;u.best[lvl]=score;u.best[lvl+'_n']=N;}
+    u.hist.unshift({lvl,m:mode,s:score,n:N,t0,t1:Date.now()});
+    u.hist=u.hist.slice(0,30);u.prog=null;saveDB();
+  }
+  const C=2*Math.PI*72;
+  const modeText = mode==='g'?'Дүрэм':mode==='v'?'Үгийн сан':'Холимог';
+  
+  card.innerHTML=
+   '<div class="center"><h1>Тест Дууслаа!</h1><p class="sub">Түвшин: '+lvl+' ('+modeText+')</p>'+
+   '<div class="ring"><svg width="170" height="170" viewBox="0 0 170 170"><circle class="t" cx="85" cy="85" r="72"/><circle class="f" id="rf" cx="85" cy="85" r="72" stroke="'+lv[1]+'" stroke-dasharray="'+C+'" stroke-dashoffset="'+C+'"/></svg><div>'+pct+'%<small>'+N+' асуултаас '+score+' зөв</small></div></div>'+
+   '<span class="level" style="color:'+lv[1]+'">'+lv[0]+'</span></div>'+
+   '<div class="grid"><div class="stat"><b style="color:var(--ok)">'+score+' / '+N+'</b><span>Зөв хариулсан</span></div><div class="stat"><b style="color:var(--bad)">'+(N-score)+' / '+N+'</b><span>Буруу хариулсан</span></div>'+
+   '<div class="stat"><b>'+g[0]+'/'+g[1]+'</b><span>Дүрэм (Grammar)</span></div><div class="stat"><b>'+v[0]+'/'+v[1]+'</b><span>Үгийн сан (Vocab)</span></div></div>'+
+   (wrong.length?'<h3>Алдаагаа засах: Буруу хариулсан асуултууд</h3>'+wrong.map(w=>'<div class="miss"><p>'+w.q+'</p><span class="r">Таны хариулт: '+w.mine+'</span><br><span class="g">Зөв хариулт: '+w.a+'</span><em><b>Яагаад?</b> '+w.e+'</em></div>').join(''):'<h3 class="center">100% Гүйцэтгэл! Баяр хүргэе! 🎉</h3>')+
+   '<button class="btn" id="again">Дахин ажиллах</button><button class="btn ghost" id="lvls">Түвшин солих</button>';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{document.getElementById('rf').style.strokeDashoffset=C*(1-pctFloat/100);}));
+  document.getElementById('again').onclick=()=>{window.scrollTo(0,0);start();};
+  document.getElementById('lvls').onclick=()=>{window.scrollTo(0,0);home();};
+  window.scrollTo(0,0);
+}
+
+// Theme toggle
+document.getElementById('theme').onclick=()=>{
+  const r=document.documentElement;
+  const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme=dark?'light':'dark';
+  try{localStorage.setItem('a1theme',r.dataset.theme);}catch(e){}
+};
+try{const t=localStorage.getItem('a1theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}
+home();
+</script>
+</body>
+</html>
